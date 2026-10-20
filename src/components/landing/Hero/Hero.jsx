@@ -10,15 +10,15 @@ function Hero() {
         <img
           src="/images/main.webp"
           alt=""
-          className="motion-safe-anim block h-full w-full scale-[1.02] object-cover object-[center_40%] animate-hero-ken"
+          className="block h-full w-full object-cover object-[center_40%]"
           width={1920}
           height={1080}
         />
         <div className="hero-overlay absolute inset-0" />
       </div>
 
-      <div className="relative z-[1] mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-end px-7 pb-10 pt-[130px] max-[860px]:px-5 max-[860px]:pb-7 max-[860px]:pt-[120px]">
-        <div className="motion-safe-anim mb-12 mt-auto max-w-[620px] pt-12 animate-hero-rise max-[860px]:mb-8">
+      <div className="relative z-[1] mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-end px-7 pb-8 pt-[130px] max-[860px]:px-5 max-[860px]:pb-6 max-[860px]:pt-[120px]">
+        <div className="motion-safe-anim mb-10 mt-auto max-w-[620px] pt-12 animate-hero-rise max-[860px]:mb-8">
           <p className="mb-[18px] inline-flex items-center gap-3 text-xs font-bold tracking-[0.16em] text-white/90 uppercase">
             <span className="h-0.5 w-7 shrink-0 bg-primary" aria-hidden="true" />
             Bilal Motors Marketplace
