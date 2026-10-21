@@ -184,9 +184,9 @@ function UsedCar() {
           <aside
             className={`${
               mobileFiltersOpen ? 'block' : 'hidden'
-            } min-[961px]:sticky min-[961px]:top-28 min-[961px]:block`}
+            } min-[961px]:sticky min-[961px]:top-28 min-[961px]:self-start min-[961px]:block`}
           >
-            <div className="overflow-hidden rounded-2xl border border-border-soft bg-surface shadow-soft">
+            <div className="rounded-2xl border border-border-soft bg-surface shadow-soft">
               <div className="flex items-center justify-between border-b border-border-soft px-4 py-3">
                 <h2 className="m-0 text-[14px] font-extrabold text-ink">Filters</h2>
                 <button
@@ -198,7 +198,7 @@ function UsedCar() {
                 </button>
               </div>
 
-              <div className="custom-scrollbar max-h-[70vh] space-y-4 overflow-y-auto p-4 max-[960px]:max-h-none">
+              <div className="space-y-4 p-4">
                 <FilterField label="Keyword">
                   <input
                     type="search"
