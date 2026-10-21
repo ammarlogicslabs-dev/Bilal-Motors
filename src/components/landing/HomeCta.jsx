@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 
 const ease = [0.22, 1, 0.36, 1]
@@ -29,22 +30,28 @@ function HomeCta() {
           </div>
 
           <div className="flex flex-wrap gap-3">
-            <motion.a
-              href="#used-cars"
+            <motion.div
               whileHover={reduceMotion ? undefined : { y: -2 }}
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-ink no-underline shadow-cta"
             >
-              Browse Used Cars
-            </motion.a>
-            <motion.a
-              href="#post-ad"
+              <Link
+                to="/used-car"
+                className="inline-flex items-center justify-center rounded-lg bg-primary px-5 py-3 text-sm font-bold text-ink no-underline shadow-cta"
+              >
+                Browse Used Cars
+              </Link>
+            </motion.div>
+            <motion.div
               whileHover={reduceMotion ? undefined : { y: -2 }}
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
-              className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/5 px-5 py-3 text-sm font-bold text-white no-underline"
             >
-              Sell Your Car
-            </motion.a>
+              <Link
+                to="/used-car"
+                className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/5 px-5 py-3 text-sm font-bold text-white no-underline"
+              >
+                Sell Your Car
+              </Link>
+            </motion.div>
           </div>
         </div>
       </motion.div>

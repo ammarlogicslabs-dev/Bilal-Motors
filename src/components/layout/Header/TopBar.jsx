@@ -20,7 +20,6 @@ function TopBar() {
         </div>
 
         <div className="flex items-center gap-4 max-[960px]:hidden">
-          <span className="text-white/55">Pakistan-wide delivery support</span>
           <span className="h-3 w-px bg-white/25" aria-hidden="true" />
           <a href="#signup" className="transition-colors hover:text-white">
             Create account
@@ -30,7 +29,7 @@ function TopBar() {
             className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 transition-colors hover:bg-white/15 hover:text-white"
           >
             <UserIcon />
-            Sign in
+            Login
           </a>
         </div>
       </div>

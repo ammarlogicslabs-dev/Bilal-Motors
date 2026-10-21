@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const MAKES = ['Honda', 'Hyundai', 'KIA', 'Suzuki', 'Toyota', 'Changan', 'BYD', 'MG']
 const CITIES = [
@@ -11,6 +12,7 @@ const CITIES = [
 ]
 
 function HomeSearch() {
+  const navigate = useNavigate()
   const [make, setMake] = useState('')
   const [city, setCity] = useState('')
   const [query, setQuery] = useState('')
@@ -18,11 +20,16 @@ function HomeSearch() {
   function handleSubmit(e) {
     e.preventDefault()
     const params = new URLSearchParams()
-    if (make) params.set('make', make)
     if (city) params.set('city', city)
     if (query.trim()) params.set('q', query.trim())
     const qs = params.toString()
-    window.location.hash = qs ? `used-cars?${qs}` : 'used-cars'
+
+    if (make) {
+      navigate(qs ? `/used-car/${make.toLowerCase()}?${qs}` : `/used-car/${make.toLowerCase()}`)
+      return
+    }
+
+    navigate(qs ? `/used-car?${qs}` : '/used-car')
   }
 
   return (

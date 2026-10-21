@@ -1,22 +1,23 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 
 const FEATURES = [
   {
     title: 'Used Cars',
     subtitle: 'Browse verified listings',
-    href: '#used-cars',
+    to: '/used-car',
     icon: 'car',
   },
   {
     title: 'Videos',
     subtitle: 'Watch car video tours',
-    href: '#videos',
+    to: '/videos',
     icon: 'video',
   },
   {
     title: 'Blogs',
     subtitle: 'Tips and buying guides',
-    href: '#blog',
+    to: '/blogs',
     icon: 'blog',
   },
 ]
@@ -41,14 +42,17 @@ function FeatureCards() {
         }}
       >
         {FEATURES.map((item) => (
-          <motion.a
+          <motion.div
             key={item.title}
-            href={item.href}
             variants={{
               hidden: { opacity: 0, y: 12 },
               show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } },
             }}
             whileHover={{ y: -2, backgroundColor: 'rgba(238, 241, 244, 1)' }}
+            className="rounded-xl"
+          >
+          <Link
+            to={item.to}
             className="group flex items-center gap-3 rounded-xl px-2 py-2 text-inherit no-underline"
           >
             <span
@@ -67,7 +71,8 @@ function FeatureCards() {
                 {item.subtitle}
               </span>
             </span>
-          </motion.a>
+          </Link>
+          </motion.div>
         ))}
       </motion.div>
     </motion.div>

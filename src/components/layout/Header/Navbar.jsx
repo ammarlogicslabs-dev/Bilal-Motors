@@ -1,12 +1,13 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link, NavLink } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import UsedCarsMegaMenu from './UsedCarsMegaMenu'
 
 const NAV_LINKS = [
-  { label: 'Home', href: '/' },
-  { label: 'Used Cars', href: '#used-cars', mega: true },
-  { label: 'Videos', href: '#videos' },
-  { label: 'Blogs', href: '#blog' },
+  { label: 'Home', to: '/' },
+  { label: 'Used Cars', to: '/used-car', mega: true },
+  { label: 'Videos', to: '/videos' },
+  { label: 'Blogs', to: '/blogs' },
 ]
 
 const navLinkClass =
@@ -60,7 +61,7 @@ function Navbar() {
       aria-label="Main"
     >
       <div className="flex min-h-[70px] items-center justify-between gap-4 px-[18px] py-2.5 max-[960px]:px-4">
-        <a href="/" className="flex shrink-0 items-center no-underline">
+        <Link to="/" className="flex shrink-0 items-center no-underline">
           <img
             src="/images/logo.webp"
             alt="Bilal Motors"
@@ -68,7 +69,7 @@ function Navbar() {
             width="180"
             height="48"
           />
-        </a>
+        </Link>
 
         <ul className="m-0 flex flex-1 list-none items-center justify-end gap-x-[18px] gap-y-1 p-0 max-[960px]:hidden">
           {NAV_LINKS.map((item) => (
@@ -93,21 +94,31 @@ function Navbar() {
                   <ChevronIcon open={megaOpen} />
                 </button>
               ) : (
-                <a href={item.href} className={`${navLinkClass} text-nav-text hover:text-primary`}>
+                <NavLink
+                  to={item.to}
+                  end={item.to === '/'}
+                  className={({ isActive }) =>
+                    `${navLinkClass} ${
+                      isActive
+                        ? 'text-primary after:scale-x-100'
+                        : 'text-nav-text hover:text-primary'
+                    }`
+                  }
+                >
                   {item.label}
-                </a>
+                </NavLink>
               )}
             </li>
           ))}
         </ul>
 
-        <a
-          href="#post-ad"
+        <Link
+          to="/used-car"
           className="ml-2 inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-primary px-[18px] py-3 text-sm font-bold text-ink no-underline shadow-cta transition duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover"
         >
           Sell Your Car
           <ArrowIcon />
-        </a>
+        </Link>
       </div>
 
       <div onMouseEnter={openHover} onMouseLeave={closeHover}>

@@ -1,34 +1,35 @@
+import { Link } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 
 const BUY_SELL_SERVICES = [
   {
     title: 'Find Used Cars',
     subtitle: 'Search published car listings.',
-    href: '#used-cars',
+    to: '/used-car',
     icon: 'search',
   },
   {
     title: 'Featured Cars for Sale',
     subtitle: 'Browse featured listings.',
-    href: '#featured',
+    to: '/used-car',
     icon: 'star',
   },
   {
     title: 'Sell Your Car',
     subtitle: 'Choose the right way to sell.',
-    href: '#post-ad',
+    to: '/used-car',
     icon: 'tag',
   },
   {
     title: 'Sell It For Me',
     subtitle: 'Managed selling service.',
-    href: '#sell-for-me',
+    to: '/used-car',
     icon: 'user',
   },
   {
     title: 'Car Videos',
     subtitle: 'Watch automotive videos and guides.',
-    href: '#videos',
+    to: '/videos',
     icon: 'video',
   },
 ]
@@ -105,8 +106,8 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                   <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
                     {BUY_SELL_SERVICES.map((item) => (
                       <li key={item.title}>
-                        <a
-                          href={item.href}
+                        <Link
+                          to={item.to}
                           onClick={onClose}
                           className="flex items-start gap-2 rounded-lg px-1.5 py-1.5 no-underline transition-colors hover:bg-primary/10"
                         >
@@ -121,7 +122,7 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                               {item.subtitle}
                             </span>
                           </span>
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -140,8 +141,8 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                   <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
                     {BRANDS.map((brand) => (
                       <li key={brand.name}>
-                        <a
-                          href={`#brand-${brand.name.toLowerCase()}`}
+                        <Link
+                          to={`/used-car/${brand.name.toLowerCase()}`}
                           onClick={onClose}
                           className="flex items-center gap-2.5 rounded-lg px-1.5 py-1.5 no-underline transition-colors hover:bg-primary/10"
                         >
@@ -155,7 +156,7 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                           <strong className="text-[12.5px] font-semibold text-ink">
                             {brand.name}
                           </strong>
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>
@@ -171,8 +172,8 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                   <ul className="m-0 flex list-none flex-col gap-0.5 p-0">
                     {CITIES.map((city) => (
                       <li key={city}>
-                        <a
-                          href={`#city-${city.toLowerCase()}`}
+                        <Link
+                          to={`/used-car?city=${encodeURIComponent(city)}`}
                           onClick={onClose}
                           className="flex items-center gap-2.5 rounded-lg px-1.5 py-1.5 no-underline transition-colors hover:bg-primary/10"
                         >
@@ -182,7 +183,7 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
                           <strong className="text-[12.5px] font-semibold text-ink">
                             {city}
                           </strong>
-                        </a>
+                        </Link>
                       </li>
                     ))}
                   </ul>

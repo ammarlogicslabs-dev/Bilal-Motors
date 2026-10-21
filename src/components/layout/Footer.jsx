@@ -1,24 +1,26 @@
+import { Link } from 'react-router-dom'
+
 const YEAR = new Date().getFullYear()
 
 const EXPLORE = [
-  { label: 'Home', href: '/' },
-  { label: 'Used Cars', href: '#used-cars' },
-  { label: 'Videos', href: '#videos' },
-  { label: 'Blogs', href: '#blog' },
+  { label: 'Home', to: '/' },
+  { label: 'Used Cars', to: '/used-car' },
+  { label: 'Videos', to: '/videos' },
+  { label: 'Blogs', to: '/blogs' },
 ]
 
 const DISCOVER = [
-  { label: 'Browse by Make', href: '#browse-make' },
-  { label: 'Browse by Body', href: '#browse-body' },
-  { label: 'Popular Cities', href: '#city-karachi' },
-  { label: 'Sell Your Car', href: '#post-ad' },
+  { label: 'Browse by Make', to: '/#browse-make' },
+  { label: 'Browse by Body', to: '/#browse-body' },
+  { label: 'Popular Cities', to: '/used-car?city=Karachi' },
+  { label: 'Sell Your Car', to: '/used-car' },
 ]
 
 const SERVICES = [
-  { label: 'Find Used Cars', href: '#used-cars' },
-  { label: 'Sell It For Me', href: '#sell-for-me' },
-  { label: 'Car Videos', href: '#videos' },
-  { label: 'Buying Guides', href: '#blog' },
+  { label: 'Find Used Cars', to: '/used-car' },
+  { label: 'Sell It For Me', to: '/used-car' },
+  { label: 'Car Videos', to: '/videos' },
+  { label: 'Buying Guides', to: '/blogs' },
 ]
 
 const footerLinkClass =
@@ -30,7 +32,7 @@ function Footer() {
       <div className="mx-auto max-w-[1240px] px-6 pt-12 pb-8 max-[860px]:px-4 max-[860px]:pt-10">
         <div className="grid grid-cols-4 gap-8 max-[1000px]:grid-cols-2 max-[560px]:grid-cols-1">
           <div className="max-[1000px]:col-span-2 max-[560px]:col-span-1">
-            <a href="/" className="inline-flex no-underline">
+            <Link to="/" className="inline-flex no-underline">
               <img
                 src="/images/logo.webp"
                 alt="Bilal Motors"
@@ -38,7 +40,7 @@ function Footer() {
                 width="180"
                 height="48"
               />
-            </a>
+            </Link>
             <p className="mt-4 mb-0 max-w-sm text-[14px] leading-relaxed text-white/65">
               Bilal Motors helps you discover used cars, watch video tours, and
               sell with confidence through one trusted automotive marketplace.
@@ -81,9 +83,9 @@ function FooterColumn({ title, links }) {
       <ul className="mt-4 mb-0 flex list-none flex-col gap-2.5 p-0">
         {links.map((item) => (
           <li key={item.label}>
-            <a href={item.href} className={footerLinkClass}>
+            <Link to={item.to} className={footerLinkClass}>
               {item.label}
-            </a>
+            </Link>
           </li>
         ))}
       </ul>

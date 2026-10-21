@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import FeatureCards from './FeatureCards'
 
@@ -61,31 +62,31 @@ function Hero() {
             variants={fadeUp}
             className="flex flex-wrap items-center gap-3 max-[560px]:flex-col max-[560px]:items-stretch"
           >
-            <motion.a
-              href="#used-cars"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3.5 text-[14.5px] font-bold text-ink no-underline shadow-cta max-[560px]:w-full"
-            >
-              Browse Used Cars
-              <ArrowIcon />
-            </motion.a>
-            <motion.a
-              href="#videos"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-white/10 px-5 py-3.5 text-[14.5px] font-bold text-white no-underline backdrop-blur-sm max-[560px]:w-full"
-            >
-              Watch Videos
-            </motion.a>
-            <motion.a
-              href="#blog"
-              whileHover={{ y: -2 }}
-              whileTap={{ scale: 0.98 }}
-              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-transparent px-5 py-3.5 text-[14.5px] font-bold text-white no-underline max-[560px]:w-full"
-            >
-              Read Blogs
-            </motion.a>
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/used-car"
+                className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3.5 text-[14.5px] font-bold text-ink no-underline shadow-cta max-[560px]:w-full"
+              >
+                Browse Used Cars
+                <ArrowIcon />
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/videos"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-white/10 px-5 py-3.5 text-[14.5px] font-bold text-white no-underline backdrop-blur-sm max-[560px]:w-full"
+              >
+                Watch Videos
+              </Link>
+            </motion.div>
+            <motion.div whileHover={{ y: -2 }} whileTap={{ scale: 0.98 }}>
+              <Link
+                to="/blogs"
+                className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-transparent px-5 py-3.5 text-[14.5px] font-bold text-white no-underline max-[560px]:w-full"
+              >
+                Read Blogs
+              </Link>
+            </motion.div>
           </motion.div>
         </motion.div>
 

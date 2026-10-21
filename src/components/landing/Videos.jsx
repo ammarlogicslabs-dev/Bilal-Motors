@@ -1,26 +1,7 @@
+import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SectionHeading from '../SectionHeading'
-
-const VIDEOS = [
-  {
-    title: 'SUV Exterior Inspection Walkthrough',
-    meta: 'Walkaround · 4 min',
-    href: '#video-suv-inspection',
-    image: '/images/videos/suv-inspection.jpg',
-  },
-  {
-    title: 'First Used Car Checklist',
-    meta: 'Buying guide · 6 min',
-    href: '#video-first-car-checklist',
-    image: '/images/videos/first-car-checklist.jpg',
-  },
-  {
-    title: 'Engine Sound Check Explained',
-    meta: 'Inspection · 5 min',
-    href: '#video-engine-sound',
-    image: '/images/videos/engine-sound.jpg',
-  },
-]
+import { VIDEOS } from '../../data/videos'
 
 const ease = [0.22, 1, 0.36, 1]
 
@@ -37,12 +18,12 @@ function Videos() {
             title="Watch before you decide"
             description="Quick walkarounds and buying guides to help you compare used cars with confidence."
           />
-          <a
-            href="#videos-all"
+          <Link
+            to="/videos"
             className="shrink-0 text-sm font-bold text-primary no-underline transition hover:text-primary-hover"
           >
             View all videos →
-          </a>
+          </Link>
         </div>
 
         <motion.div
@@ -58,9 +39,8 @@ function Videos() {
           }}
         >
           {VIDEOS.map((item) => (
-            <motion.a
-              key={item.title}
-              href={item.href}
+            <motion.div
+              key={item.slug}
               variants={{
                 hidden: reduceMotion ? { opacity: 1 } : { opacity: 0, y: 16 },
                 show: {
@@ -70,32 +50,39 @@ function Videos() {
                 },
               }}
               whileHover={reduceMotion ? undefined : { y: -4 }}
-              className="group overflow-hidden rounded-2xl border border-border-soft bg-bg no-underline shadow-soft transition-colors hover:border-primary/35"
             >
-              <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
-                  width="640"
-                  height="400"
-                />
-                <span className="absolute inset-0 bg-ink/15 transition group-hover:bg-ink/25" />
-                <span className="absolute inset-0 grid place-items-center">
-                  <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-ink shadow-cta transition group-hover:scale-105">
-                    <PlayIcon />
+              <Link
+                to={`/videos/${item.slug}`}
+                className="group block overflow-hidden rounded-2xl border border-border-soft bg-bg no-underline shadow-soft transition-colors hover:border-primary/35"
+              >
+                <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
+                  <img
+                    src={item.image}
+                    alt={item.title}
+                    className="h-full w-full object-cover transition duration-500 group-hover:scale-[1.04]"
+                    width="640"
+                    height="400"
+                  />
+                  <span className="absolute inset-0 bg-ink/15 transition group-hover:bg-ink/25" />
+                  <span className="absolute top-3 left-3 rounded-full bg-ink/70 px-2.5 py-1 text-[11px] font-bold text-white backdrop-blur-sm">
+                    {item.duration}
                   </span>
-                </span>
-              </div>
-              <div className="p-4">
-                <p className="m-0 text-[11px] font-bold tracking-[0.1em] text-primary uppercase">
-                  {item.meta}
-                </p>
-                <strong className="mt-1.5 block text-[15px] leading-snug font-bold text-ink">
-                  {item.title}
-                </strong>
-              </div>
-            </motion.a>
+                  <span className="absolute inset-0 grid place-items-center">
+                    <span className="grid h-12 w-12 place-items-center rounded-full bg-primary text-ink shadow-cta transition group-hover:scale-105">
+                      <PlayIcon />
+                    </span>
+                  </span>
+                </div>
+                <div className="p-4">
+                  <p className="m-0 text-[11px] font-bold tracking-[0.1em] text-primary uppercase">
+                    {item.category}
+                  </p>
+                  <strong className="mt-1.5 block text-[15px] leading-snug font-bold text-ink">
+                    {item.title}
+                  </strong>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </motion.div>
       </div>
