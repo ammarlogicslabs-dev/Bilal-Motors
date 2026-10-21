@@ -27,7 +27,7 @@ function WhyUs() {
 
   return (
     <section id="why-us" className="bg-surface px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
         <SectionHeading
           eyebrow="Why Bilal Motors"
           title="A clearer way to buy and sell"

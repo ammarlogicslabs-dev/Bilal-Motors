@@ -10,10 +10,10 @@ function Blogs() {
 
   return (
     <section id="blog" className="bg-bg px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            className="!mb-0"
+            className="mb-0!"
             eyebrow="Blogs"
             title="Guides for smarter decisions"
             description="Practical tips on buying, selling, and choosing the right used car in Pakistan."
@@ -55,7 +55,7 @@ function Blogs() {
                 to={`/blogs/${item.slug}`}
                 className="group flex h-full flex-col overflow-hidden rounded-2xl border border-border-soft bg-surface no-underline shadow-soft transition-colors hover:border-primary/35"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-ink/5">
+                <div className="aspect-16/10 overflow-hidden bg-ink/5">
                   <img
                     src={item.image}
                     alt={item.title}

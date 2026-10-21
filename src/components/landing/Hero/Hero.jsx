@@ -24,9 +24,9 @@ function Hero() {
         <div className="hero-overlay absolute inset-0" />
       </div>
 
-      <div className="relative z-[1] mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-end px-6 pb-0 pt-[130px] max-[860px]:px-4 max-[860px]:pt-[120px]">
+      <div className="relative z-1 mx-auto flex w-full max-w-310 flex-1 flex-col justify-end px-6 pb-0 pt-32.5 max-[860px]:px-4 max-[860px]:pt-30">
         <motion.div
-          className="mb-10 mt-auto max-w-[620px] pt-10 text-white max-[860px]:mb-8"
+          className="mb-10 mt-auto max-w-155 pt-10 text-white max-[860px]:mb-8"
           initial="hidden"
           animate="show"
           variants={{
@@ -52,7 +52,7 @@ function Hero() {
 
           <motion.p
             variants={fadeUp}
-            className="mb-8 max-w-[500px] text-[16px] leading-[1.6] font-medium text-white/80"
+            className="mb-8 max-w-125 text-[16px] leading-[1.6] font-medium text-white/80"
           >
             Explore verified used car listings, watch video tours, and read
             buying guides — everything you need in one place.

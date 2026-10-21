@@ -29,7 +29,7 @@ const footerLinkClass =
 function Footer() {
   return (
     <footer className="border-t border-border-soft bg-ink text-white">
-      <div className="mx-auto max-w-[1240px] px-6 pt-12 pb-8 max-[860px]:px-4 max-[860px]:pt-10">
+      <div className="mx-auto max-w-310 px-6 pt-12 pb-8 max-[860px]:px-4 max-[860px]:pt-10">
         <div className="grid grid-cols-4 gap-8 max-[1000px]:grid-cols-2 max-[560px]:grid-cols-1">
           <div className="max-[1000px]:col-span-2 max-[560px]:col-span-1">
             <Link to="/" className="inline-flex no-underline">

@@ -9,7 +9,7 @@ function HomeCta() {
   return (
     <section className="px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
       <motion.div
-        className="mx-auto max-w-[1240px] overflow-hidden rounded-3xl bg-ink px-8 py-10 text-white max-[860px]:rounded-2xl max-[860px]:px-5 max-[860px]:py-8"
+        className="mx-auto max-w-310 overflow-hidden rounded-3xl bg-ink px-8 py-10 text-white max-[860px]:rounded-2xl max-[860px]:px-5 max-[860px]:py-8"
         initial={reduceMotion ? false : { opacity: 0, y: 18 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.35 }}

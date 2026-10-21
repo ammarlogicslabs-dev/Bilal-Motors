@@ -10,10 +10,10 @@ function Videos() {
 
   return (
     <section id="videos" className="bg-surface px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <SectionHeading
-            className="!mb-0"
+            className="mb-0!"
             eyebrow="Videos"
             title="Watch before you decide"
             description="Quick walkarounds and buying guides to help you compare used cars with confidence."
@@ -53,9 +53,10 @@ function Videos() {
             >
               <Link
                 to={`/videos/${item.slug}`}
-                className="group block overflow-hidden rounded-2xl border border-border-soft bg-bg no-underline shadow-soft transition-colors hover:border-primary/35"
+                className="group block overflow-hidden rounded-2xl border border-border-soft bg-bg no-underline shadow-soft transition-colors 
+                hover:border-primary/35"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-ink/5">
+                <div className="relative aspect-16/10 overflow-hidden bg-ink/5">
                   <img
                     src={item.image}
                     alt={item.title}
@@ -74,7 +75,7 @@ function Videos() {
                   </span>
                 </div>
                 <div className="p-4">
-                  <p className="m-0 text-[11px] font-bold tracking-[0.1em] text-primary uppercase">
+                  <p className="m-0 text-[11px] font-bold tracking-widest text-primary uppercase">
                     {item.category}
                   </p>
                   <strong className="mt-1.5 block text-[15px] leading-snug font-bold text-ink">

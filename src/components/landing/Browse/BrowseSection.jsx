@@ -13,7 +13,7 @@ function BrowseSection() {
       id="browse"
       className="relative px-6 py-6 max-[860px]:px-4 max-[860px]:py-5"
     >
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
         <motion.div
           initial={reduceMotion ? false : { opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}

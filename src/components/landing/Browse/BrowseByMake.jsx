@@ -23,7 +23,7 @@ function BrandLogo({ src, name, className, size, grow = false }) {
     return (
       <span
         aria-hidden="true"
-        className={`${className} grid place-items-center rounded-md bg-ink/[0.06] text-[13px] font-extrabold text-ink/45`}
+        className={`${className} grid place-items-center rounded-md bg-ink/6 text-[13px] font-extrabold text-ink/45`}
       >
         {name.charAt(0)}
       </span>
@@ -75,7 +75,7 @@ function BrowseByMake() {
       className="overflow-hidden rounded-2xl border border-border-soft bg-surface shadow-soft"
     >
       <div
-        className="h-1 bg-gradient-to-r from-primary via-primary-hover to-primary"
+        className="h-1 bg-linear-to-r from-primary via-primary-hover to-primary"
         aria-hidden="true"
       />
 

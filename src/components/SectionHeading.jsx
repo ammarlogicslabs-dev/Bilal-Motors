@@ -21,7 +21,12 @@ function SectionHeading({
       transition={{ duration: 0.45, ease }}
     >
       {eyebrow ? (
-        <p className="mb-2 text-xs font-bold tracking-[0.14em] text-primary uppercase">
+        <p
+          className={`mb-2 inline-flex items-center gap-3 text-xs font-bold tracking-[0.14em] text-primary uppercase ${
+            centered ? 'justify-center' : ''
+          }`}
+        >
+          <span className="h-0.5 w-7 shrink-0 bg-accent" aria-hidden="true" />
           {eyebrow}
         </p>
       ) : null}

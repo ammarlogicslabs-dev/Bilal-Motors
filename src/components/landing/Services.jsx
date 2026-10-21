@@ -56,7 +56,8 @@ function Services() {
 
   return (
     <section id="services" className="bg-bg px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
+        
         <SectionHeading
           eyebrow="Services"
           title="Everything you need in one place"
@@ -90,19 +91,21 @@ function Services() {
             >
             <Link
               to={item.to}
-              className={`group relative flex min-h-[168px] overflow-hidden rounded-[22px] border border-border-soft bg-gradient-to-r ${item.tint} no-underline shadow-soft transition-shadow hover:shadow-[0_14px_34px_rgba(28,36,48,0.1)]`}
+              className={`group relative flex min-h-42 overflow-hidden rounded-[22px] border border-border-soft bg-linear-to-r ${item.tint} no-underline shadow-soft transition-shadow hover:shadow-[0_14px_34px_rgba(28,36,48,0.1)]`}
             >
-              <div className="relative z-[1] flex min-w-0 flex-1 flex-col justify-between gap-4 p-5 pr-2 max-[560px]:p-4">
+              <div className="relative z-1 flex min-w-0 flex-1 flex-col justify-between gap-4 p-5 pr-2 max-[560px]:p-4">
                 <div>
+                  
                   <p
                     className={`m-0 mb-2 text-[10px] font-bold tracking-[0.12em] uppercase ${item.accent}`}
                   >
+                    
                     {item.eyebrow}
                   </p>
                   <h3 className="m-0 text-[1.15rem] leading-snug font-extrabold tracking-[-0.02em] text-ink max-[560px]:text-[1.05rem]">
                     {item.title}
                   </h3>
-                  <p className="mt-2 mb-0 max-w-[240px] text-[13px] leading-relaxed text-muted-text">
+                  <p className="mt-2 mb-0 max-w-60 text-[13px] leading-relaxed text-muted-text">
                     {item.description}
                   </p>
                 </div>
@@ -115,13 +118,13 @@ function Services() {
                 </span>
               </div>
 
-              <div className="relative flex w-[44%] max-w-[240px] shrink-0 items-stretch p-3 pl-0 max-[560px]:w-[40%] max-[560px]:p-2">
+              <div className="relative flex w-[44%] max-w-60 shrink-0 items-stretch p-3 pl-0 max-[560px]:w-[40%] max-[560px]:p-2">
                 <span
-                  className={`absolute top-3 right-3 z-[2] grid h-8 w-8 place-items-center rounded-full border border-white bg-white shadow-sm ${item.accent}`}
+                  className={`absolute top-3 right-3 z-2 grid h-8 w-8 place-items-center rounded-full border border-white bg-white shadow-sm ${item.accent}`}
                 >
                   <ServiceIcon name={item.icon} />
                 </span>
-                <div className="relative h-full min-h-[140px] w-full overflow-hidden rounded-2xl">
+                <div className="relative h-full min-h-35 w-full overflow-hidden rounded-2xl">
                   <img
                     src={item.image}
                     alt=""
@@ -129,7 +132,7 @@ function Services() {
                     width="240"
                     height="160"
                   />
-                  <span className="pointer-events-none absolute inset-0 bg-gradient-to-l from-transparent via-transparent to-white/25" />
+                  <span className="pointer-events-none absolute inset-0 bg-linear-to-l from-transparent via-transparent to-white/25" />
                 </div>
               </div>
             </Link>

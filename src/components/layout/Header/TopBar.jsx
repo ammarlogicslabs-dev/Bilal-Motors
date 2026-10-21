@@ -1,7 +1,7 @@
 function TopBar() {
   return (
     <div className="bg-ink text-[12.5px] leading-none text-white/80">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-6 py-1.5">
+      <div className="mx-auto flex max-w-310 items-center justify-between gap-4 px-6 py-1.5">
         <div className="flex items-center gap-5 max-[960px]:gap-3">
           <a
             href="tel:+923459275777"

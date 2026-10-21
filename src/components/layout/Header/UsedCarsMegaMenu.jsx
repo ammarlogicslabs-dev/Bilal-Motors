@@ -8,12 +8,12 @@ const BUY_SELL_SERVICES = [
     to: '/used-car',
     icon: 'search',
   },
-  {
-    title: 'Featured Cars for Sale',
-    subtitle: 'Browse featured listings.',
-    to: '/used-car',
-    icon: 'star',
-  },
+  // {
+  //   title: 'Featured Cars for Sale',
+  //   subtitle: 'Browse featured listings.',
+  //   to: '/used-car',
+  //   icon: 'star',
+  // },
   {
     title: 'Sell Your Car',
     subtitle: 'Choose the right way to sell.',
@@ -85,7 +85,7 @@ function UsedCarsMegaMenu({ open, pinned, onClose }) {
           >
             <div className="overflow-hidden rounded-xl border border-border-soft bg-white shadow-nav">
               <motion.div
-                className="grid grid-cols-3 max-[900px]:grid-cols-1"
+                className="custom-scrollbar grid max-h-[min(78vh,720px)] grid-cols-3 overflow-y-auto max-[900px]:grid-cols-1"
                 initial="hidden"
                 animate="show"
                 variants={{

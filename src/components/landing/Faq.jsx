@@ -43,7 +43,7 @@ function Faq() {
 
   return (
     <section id="faq" className="bg-bg px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">
-      <div className="mx-auto max-w-[1240px]">
+      <div className="mx-auto max-w-310">
         <SectionHeading
           eyebrow="Need Help?"
           title="Frequently Asked Questions"

@@ -62,7 +62,7 @@ function BodyImage({ src, name, className, width, height, hovered = false }) {
     return (
       <span
         aria-hidden="true"
-        className={`${className} grid place-items-center rounded-md bg-ink/[0.06] text-[13px] font-extrabold text-ink/40`}
+        className={`${className} grid place-items-center rounded-md bg-ink/6 text-[13px] font-extrabold text-ink/40`}
       >
         {name.charAt(0)}
       </span>
@@ -113,7 +113,7 @@ function BrowseByBody() {
       className="overflow-hidden rounded-2xl border border-border-soft bg-surface shadow-soft"
     >
       <div
-        className="h-1 bg-gradient-to-r from-ink via-primary to-ink/80"
+        className="h-1 bg-linear-to-r from-ink to-ink/80"
         aria-hidden="true"
       />
 
@@ -130,7 +130,7 @@ function BrowseByBody() {
           </div>
           <Link
             to="/used-car"
-            className="group shrink-0 inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[13px] font-bold text-primary no-underline transition hover:bg-primary/[0.08] hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="group shrink-0 inline-flex items-center gap-1 rounded-lg px-2 py-1 text-[13px] font-bold text-primary no-underline transition hover:bg-primary/8 hover:text-primary-hover focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
             Show all
             <span className="transition-transform duration-200 group-hover:translate-x-0.5" aria-hidden="true">
@@ -162,7 +162,7 @@ function BrowseByBody() {
                 name={selected.name}
                 width="100"
                 height="44"
-                className="h-11 w-[100px] rounded-md object-contain object-center drop-shadow-sm"
+                className="h-11 w-25 rounded-md object-contain object-center drop-shadow-sm"
               />
               <div className="min-w-0 flex-1">
                 <div className="flex items-center gap-2">
@@ -227,7 +227,7 @@ function BrowseByBody() {
                   {isActive && (
                     <motion.span
                       layoutId="body-active-bg"
-                      className="absolute inset-0 -z-0 bg-primary/[0.08]"
+                      className="absolute inset-0 z-0 bg-primary/8"
                       transition={reduceMotion ? { duration: 0 } : { type: 'spring', stiffness: 420, damping: 34 }}
                       aria-hidden="true"
                     />
@@ -248,7 +248,7 @@ function BrowseByBody() {
                       width="88"
                       height="36"
                       hovered={isActive}
-                      className="h-9 w-full max-w-[88px] object-contain"
+                      className="h-9 w-full max-w-22 object-contain"
                     />
                   </span>
                   <span
