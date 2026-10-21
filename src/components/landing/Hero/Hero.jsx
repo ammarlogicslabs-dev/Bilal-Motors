@@ -1,63 +1,93 @@
+import { motion } from 'framer-motion'
 import FeatureCards from './FeatureCards'
+
+const ease = [0.22, 1, 0.36, 1]
 
 function Hero() {
   return (
     <section
-      className="relative flex min-h-svh flex-col overflow-hidden text-white"
-      aria-label="Bilal Motors marketplace"
+      className="relative flex min-h-svh flex-col overflow-hidden"
+      aria-label="Bilal Motors home"
     >
       <div className="absolute inset-0 z-0" aria-hidden="true">
-        <img
-          src="/images/main.webp"
+        <motion.img
+          src="/images/hero.jpg"
           alt=""
           className="block h-full w-full object-cover object-[center_40%]"
           width={1920}
           height={1080}
+          initial={{ scale: 1.06, opacity: 0.7 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease }}
         />
         <div className="hero-overlay absolute inset-0" />
       </div>
 
-      <div className="relative z-[1] mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-end px-7 pb-8 pt-[130px] max-[860px]:px-5 max-[860px]:pb-6 max-[860px]:pt-[120px]">
-        <div className="motion-safe-anim mb-10 mt-auto max-w-[620px] pt-12 animate-hero-rise max-[860px]:mb-8">
-          <p className="mb-[18px] inline-flex items-center gap-3 text-xs font-bold tracking-[0.16em] text-white/90 uppercase">
-            <span className="h-0.5 w-7 shrink-0 bg-primary" aria-hidden="true" />
+      <div className="relative z-[1] mx-auto flex w-full max-w-[1240px] flex-1 flex-col justify-end px-6 pb-0 pt-[130px] max-[860px]:px-4 max-[860px]:pt-[120px]">
+        <motion.div
+          className="mb-10 mt-auto max-w-[620px] pt-10 text-white max-[860px]:mb-8"
+          initial="hidden"
+          animate="show"
+          variants={{
+            hidden: {},
+            show: { transition: { staggerChildren: 0.1, delayChildren: 0.15 } },
+          }}
+        >
+          <motion.p
+            variants={fadeUp}
+            className="mb-4 inline-flex items-center gap-3 text-xs font-bold tracking-[0.16em] text-white/90 uppercase"
+          >
+            <span className="h-0.5 w-7 shrink-0 bg-accent" aria-hidden="true" />
             Bilal Motors Marketplace
-          </p>
+          </motion.p>
 
-          <h1 className="mb-[18px] font-sans text-[clamp(2.4rem,5.2vw,3.75rem)] font-black leading-[1.08] tracking-[-0.03em]">
-            <span className="block">Find the right car.</span>
-            <span className="block text-primary">Make the right move.</span>
-          </h1>
+          <motion.h1
+            variants={fadeUp}
+            className="mb-4 font-sans text-[clamp(2.35rem,5vw,3.55rem)] font-extrabold leading-[1.08] tracking-[-0.03em]"
+          >
+            <span className="block">Find your next</span>
+            <span className="block text-accent">used car today.</span>
+          </motion.h1>
 
-          <p className="mb-7 max-w-[520px] text-[16.5px] leading-[1.55] font-medium text-white/85">
-            Browse used cars, join live auctions, or sell your vehicle through
-            one trusted automotive marketplace.
-          </p>
+          <motion.p
+            variants={fadeUp}
+            className="mb-8 max-w-[500px] text-[16px] leading-[1.6] font-medium text-white/80"
+          >
+            Explore verified used car listings, watch video tours, and read
+            buying guides — everything you need in one place.
+          </motion.p>
 
-          <div className="flex flex-wrap items-center gap-3 max-[560px]:flex-col max-[560px]:items-stretch">
-            <a
-              href="#auctions"
-              className="motion-safe-anim inline-flex items-center justify-center gap-2 rounded-[10px] bg-primary px-5 py-[13px] text-[14.5px] font-bold text-white no-underline shadow-cta transition duration-200 animate-btn-pulse hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover max-[560px]:w-full"
+          <motion.div
+            variants={fadeUp}
+            className="flex flex-wrap items-center gap-3 max-[560px]:flex-col max-[560px]:items-stretch"
+          >
+            <motion.a
+              href="#used-cars"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-5 py-3.5 text-[14.5px] font-bold text-ink no-underline shadow-cta max-[560px]:w-full"
             >
-              <BoltIcon />
-              Live Auction
-            </a>
-            <a
-              href="#dealer-register"
-              className="inline-flex items-center justify-center gap-2 rounded-[10px] border-[1.5px] border-white/75 bg-transparent px-5 py-[13px] text-[14.5px] font-bold text-white no-underline transition duration-200 hover:-translate-y-px hover:border-white hover:bg-white/10 max-[560px]:w-full [&_svg]:text-primary"
-            >
-              Dealer Register
+              Browse Used Cars
               <ArrowIcon />
-            </a>
-            <a
-              href="#dealer-login"
-              className="inline-flex items-center justify-center gap-2 rounded-[10px] border-[1.5px] border-white/75 bg-transparent px-5 py-[13px] text-[14.5px] font-bold text-white no-underline transition duration-200 hover:-translate-y-px hover:border-white hover:bg-white/10 max-[560px]:w-full [&_svg]:text-primary"
+            </motion.a>
+            <motion.a
+              href="#videos"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-white/10 px-5 py-3.5 text-[14.5px] font-bold text-white no-underline backdrop-blur-sm max-[560px]:w-full"
             >
-              Dealer Login
-              <ArrowIcon />
-            </a>
-          </div>
-        </div>
+              Watch Videos
+            </motion.a>
+            <motion.a
+              href="#blog"
+              whileHover={{ y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              className="inline-flex items-center justify-center gap-2 rounded-lg border border-white/35 bg-transparent px-5 py-3.5 text-[14.5px] font-bold text-white no-underline max-[560px]:w-full"
+            >
+              Read Blogs
+            </motion.a>
+          </motion.div>
+        </motion.div>
 
         <FeatureCards />
       </div>
@@ -65,12 +95,13 @@ function Hero() {
   )
 }
 
-function BoltIcon() {
-  return (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-      <path d="M13 2 4 13.5h6.5L10 22l9-11.5h-6.5L13 2z" />
-    </svg>
-  )
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.55, ease },
+  },
 }
 
 function ArrowIcon() {

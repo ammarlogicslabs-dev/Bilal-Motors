@@ -3,7 +3,7 @@ import Navbar from './Navbar'
 
 function Header() {
   return (
-    <header className="absolute inset-x-0 top-0 z-40 w-full">
+    <header className="fixed inset-x-0 top-0 z-50 w-full">
       <TopBar />
       <div className="px-6">
         <Navbar />

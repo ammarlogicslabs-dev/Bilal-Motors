@@ -1,14 +1,14 @@
 function TopBar() {
   return (
-    <div className="bg-topbar text-[13px] leading-none text-white/85">
-      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-7 py-[11px]">
+    <div className="bg-ink text-[12.5px] leading-none text-white/80">
+      <div className="mx-auto flex max-w-[1240px] items-center justify-between gap-4 px-6 py-1.5">
         <div className="flex items-center gap-5 max-[960px]:gap-3">
           <a
             href="tel:+923459275777"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"
           >
             <PhoneIcon />
-            <span>+923459275777</span>
+            <span>Call +92 345 9275777</span>
           </a>
           <a
             href="mailto:info@bilalmotors.com"
@@ -19,20 +19,18 @@ function TopBar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-5 max-[960px]:hidden">
-          <a
-            href="#signup"
-            className="inline-flex items-center gap-2 transition-colors hover:text-white"
-          >
-            Sign Up
+        <div className="flex items-center gap-4 max-[960px]:hidden">
+          <span className="text-white/55">Pakistan-wide delivery support</span>
+          <span className="h-3 w-px bg-white/25" aria-hidden="true" />
+          <a href="#signup" className="transition-colors hover:text-white">
+            Create account
           </a>
-          <span className="h-3.5 w-px bg-white/35" aria-hidden="true" />
           <a
             href="#login"
-            className="inline-flex items-center gap-2 transition-colors hover:text-white"
+            className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 transition-colors hover:bg-white/15 hover:text-white"
           >
             <UserIcon />
-            <span>Login</span>
+            Sign in
           </a>
         </div>
       </div>

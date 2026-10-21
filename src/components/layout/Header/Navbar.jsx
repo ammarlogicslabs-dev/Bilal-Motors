@@ -1,16 +1,62 @@
+import { useEffect, useRef, useState } from 'react'
+import { motion } from 'framer-motion'
+import UsedCarsMegaMenu from './UsedCarsMegaMenu'
+
 const NAV_LINKS = [
-  { label: 'Used Cars', href: '#used-cars', hasDropdown: true },
-  { label: 'Auctions', href: '#auctions' },
-  { label: 'New Cars', href: '#new-cars' },
-  { label: 'Car Inspection', href: '#inspection' },
-  { label: 'Car Videos', href: '#videos' },
-  { label: 'Blog', href: '#blog' },
+  { label: 'Home', href: '/' },
+  { label: 'Used Cars', href: '#used-cars', mega: true },
+  { label: 'Videos', href: '#videos' },
+  { label: 'Blogs', href: '#blog' },
 ]
 
+const navLinkClass =
+  'group relative inline-flex items-center gap-1 pb-1 text-sm font-semibold tracking-wide no-underline transition-colors duration-200 after:absolute after:right-0 after:bottom-0 after:left-0 after:h-[2px] after:origin-left after:scale-x-0 after:rounded-full after:bg-primary after:transition-transform after:duration-300 after:ease-[cubic-bezier(0.22,1,0.36,1)] hover:after:scale-x-100'
+
 function Navbar() {
+  const [hovered, setHovered] = useState(false)
+  const [pinned, setPinned] = useState(false)
+  const leaveTimer = useRef(null)
+  const megaOpen = hovered || pinned
+
+  useEffect(() => {
+    return () => {
+      if (leaveTimer.current) clearTimeout(leaveTimer.current)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (!megaOpen) return undefined
+
+    function onKeyDown(event) {
+      if (event.key === 'Escape') {
+        setPinned(false)
+        setHovered(false)
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+  }, [megaOpen])
+
+  function openHover() {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current)
+    setHovered(true)
+  }
+
+  function closeHover() {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current)
+    leaveTimer.current = setTimeout(() => setHovered(false), 140)
+  }
+
+  function closeMega() {
+    if (leaveTimer.current) clearTimeout(leaveTimer.current)
+    setPinned(false)
+    setHovered(false)
+  }
+
   return (
     <nav
-      className="mx-auto max-w-[1240px] rounded-b-[14px] bg-white shadow-nav"
+      className="relative mx-auto max-w-[1240px] rounded-b-[14px] bg-white shadow-nav"
       aria-label="Main"
     >
       <div className="flex min-h-[70px] items-center justify-between gap-4 px-[18px] py-2.5 max-[960px]:px-4">
@@ -24,35 +70,64 @@ function Navbar() {
           />
         </a>
 
-        <ul className="m-0 flex flex-1 list-none items-center justify-end gap-x-[18px] gap-y-1 p-0 max-[1100px]:gap-x-3.5 max-[960px]:hidden">
+        <ul className="m-0 flex flex-1 list-none items-center justify-end gap-x-[18px] gap-y-1 p-0 max-[960px]:hidden">
           {NAV_LINKS.map((item) => (
-            <li key={item.label}>
-              <a
-                href={item.href}
-                className="inline-flex items-center gap-1 whitespace-nowrap text-sm font-semibold tracking-wide text-nav-text no-underline transition-colors hover:text-primary max-[1100px]:text-[13.5px] [&_svg]:opacity-70"
-              >
-                {item.label}
-                {item.hasDropdown ? <ChevronIcon /> : null}
-              </a>
+            <li
+              key={item.label}
+              onMouseEnter={item.mega ? openHover : undefined}
+              onMouseLeave={item.mega ? closeHover : undefined}
+            >
+              {item.mega ? (
+                <button
+                  type="button"
+                  onClick={() => setPinned((value) => !value)}
+                  aria-expanded={megaOpen}
+                  aria-haspopup="dialog"
+                  className={`${navLinkClass} border-0 bg-transparent ${
+                    megaOpen
+                      ? 'text-primary after:scale-x-100'
+                      : 'text-nav-text hover:text-primary'
+                  }`}
+                >
+                  {item.label}
+                  <ChevronIcon open={megaOpen} />
+                </button>
+              ) : (
+                <a href={item.href} className={`${navLinkClass} text-nav-text hover:text-primary`}>
+                  {item.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>
 
         <a
           href="#post-ad"
-          className="ml-2 inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-primary px-[18px] py-3 text-sm font-bold text-white no-underline shadow-cta transition duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover"
+          className="ml-2 inline-flex shrink-0 items-center gap-2 rounded-[10px] bg-primary px-[18px] py-3 text-sm font-bold text-ink no-underline shadow-cta transition duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover"
         >
-          Post Free Ad
+          Sell Your Car
           <ArrowIcon />
         </a>
+      </div>
+
+      <div onMouseEnter={openHover} onMouseLeave={closeHover}>
+        <UsedCarsMegaMenu open={megaOpen} pinned={pinned} onClose={closeMega} />
       </div>
     </nav>
   )
 }
 
-function ChevronIcon() {
+function ChevronIcon({ open }) {
   return (
-    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+    <motion.svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      aria-hidden="true"
+      animate={{ rotate: open ? 180 : 0 }}
+      transition={{ duration: 0.2 }}
+    >
       <path
         d="M6 9l6 6 6-6"
         stroke="currentColor"
@@ -60,7 +135,7 @@ function ChevronIcon() {
         strokeLinecap="round"
         strokeLinejoin="round"
       />
-    </svg>
+    </motion.svg>
   )
 }
 

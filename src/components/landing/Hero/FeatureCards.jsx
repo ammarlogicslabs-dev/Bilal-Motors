@@ -1,54 +1,76 @@
+import { motion } from 'framer-motion'
+
 const FEATURES = [
   {
     title: 'Used Cars',
-    subtitle: 'Search listings',
+    subtitle: 'Browse verified listings',
     href: '#used-cars',
     icon: 'car',
   },
   {
-    title: 'Live Auctions',
-    subtitle: 'Bid with confidence',
-    href: '#auctions',
-    icon: 'bolt',
+    title: 'Videos',
+    subtitle: 'Watch car video tours',
+    href: '#videos',
+    icon: 'video',
   },
   {
-    title: 'Inspection',
-    subtitle: 'Know before you buy',
-    href: '#inspection',
-    icon: 'shield',
+    title: 'Blogs',
+    subtitle: 'Tips and buying guides',
+    href: '#blog',
+    icon: 'blog',
   },
 ]
 
+const ease = [0.22, 1, 0.36, 1]
+
 function FeatureCards() {
   return (
-    <div className="motion-safe-anim w-full border-t border-white/10 pt-4 animate-hero-rise-delay max-[860px]:pt-3.5">
-      <div className="flex flex-wrap items-center gap-x-10 gap-y-4 max-[860px]:flex-col max-[860px]:items-start max-[860px]:gap-3.5">
+    <motion.div
+      className="w-full"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.55, delay: 0.35, ease }}
+    >
+      <motion.div
+        className="grid grid-cols-3 gap-3 rounded-t-2xl bg-surface px-5 py-4 shadow-soft max-[860px]:grid-cols-1 max-[860px]:gap-2 max-[860px]:px-4 max-[860px]:py-3"
+        initial="hidden"
+        animate="show"
+        variants={{
+          hidden: {},
+          show: { transition: { staggerChildren: 0.08, delayChildren: 0.45 } },
+        }}
+      >
         {FEATURES.map((item) => (
-          <a
+          <motion.a
             key={item.title}
             href={item.href}
-            className="group flex items-center gap-2.5 text-inherit no-underline transition duration-200 hover:opacity-90"
+            variants={{
+              hidden: { opacity: 0, y: 12 },
+              show: { opacity: 1, y: 0, transition: { duration: 0.4, ease } },
+            }}
+            whileHover={{ y: -2, backgroundColor: 'rgba(238, 241, 244, 1)' }}
+            className="group flex items-center gap-3 rounded-xl px-2 py-2 text-inherit no-underline"
           >
             <span
-              className="grid h-9 w-9 shrink-0 place-items-center rounded-lg bg-[#1a1f28] text-primary transition duration-200 group-hover:bg-[#222833]"
+              className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-primary/15 text-primary transition duration-200 group-hover:bg-primary group-hover:text-ink"
               aria-hidden="true"
             >
               {item.icon === 'car' ? <CarIcon /> : null}
-              {item.icon === 'bolt' ? <BoltIcon /> : null}
-              {item.icon === 'shield' ? <ShieldIcon /> : null}
+              {item.icon === 'video' ? <VideoIcon /> : null}
+              {item.icon === 'blog' ? <BlogIcon /> : null}
             </span>
-            <span className="flex min-w-0 flex-col gap-px">
-              <strong className="text-[13px] font-bold text-white">
+            <span className="flex min-w-0 flex-col gap-0.5">
+              <strong className="text-[13.5px] font-bold text-ink">
                 {item.title}
               </strong>
-              <span className="text-[11px] font-medium text-muted-text">
+              <span className="text-[11.5px] font-medium text-muted-text">
                 {item.subtitle}
               </span>
             </span>
-          </a>
+          </motion.a>
         ))}
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   )
 }
 
@@ -73,29 +95,42 @@ function CarIcon() {
   )
 }
 
-function BoltIcon() {
+function VideoIcon() {
   return (
-    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
-      <path d="M13 2 4 13.5h6.5L10 22l9-11.5h-6.5L13 2z" />
+    <svg width="17" height="17" viewBox="0 0 24 24" fill="none">
+      <rect
+        x="3"
+        y="6"
+        width="14"
+        height="12"
+        rx="2"
+        stroke="currentColor"
+        strokeWidth="1.7"
+      />
+      <path
+        d="m17 10 4-2v8l-4-2v-4z"
+        stroke="currentColor"
+        strokeWidth="1.7"
+        strokeLinejoin="round"
+      />
     </svg>
   )
 }
 
-function ShieldIcon() {
+function BlogIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
       <path
-        d="M12 3 5 6.5v5.2c0 4.3 2.9 7.6 7 8.8 4.1-1.2 7-4.5 7-8.8V6.5L12 3z"
+        d="M5 4h11a2 2 0 0 1 2 2v14l-3.5-2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"
         stroke="currentColor"
         strokeWidth="1.7"
         strokeLinejoin="round"
       />
       <path
-        d="m9.2 12 1.9 1.9 3.7-3.8"
+        d="M7 9h8M7 13h5"
         stroke="currentColor"
         strokeWidth="1.7"
         strokeLinecap="round"
-        strokeLinejoin="round"
       />
     </svg>
   )

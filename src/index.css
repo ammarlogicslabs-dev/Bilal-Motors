@@ -1,39 +1,37 @@
 @import 'tailwindcss';
 
 @theme {
-  --color-primary: #e61e26;
-  --color-primary-hover: #c91820;
-  --color-primary-glow: rgba(230, 30, 38, 0.45);
-  --color-black: #0a0a0a;
-  --color-charcoal: #121212;
-  --color-nav-text: #3a3a3a;
-  --color-muted-text: #a0a0a0;
-  --color-topbar: #070B12;
-  --color-glass: rgba(20, 20, 20, 0.72);
+  /* Surfaces stay neutral — only buttons/text use light ice blue */
+  --color-primary: #6ec4e0;
+  --color-primary-hover: #55b4d4;
+  --color-accent: #8ed4ee;
+  --color-bg: #eef1f4;
+  --color-surface: #ffffff;
+  --color-ink: #1c2430;
+  --color-muted-text: #6b7785;
+  --color-nav-text: #3d4a5c;
+  --color-border-soft: rgba(28, 36, 48, 0.08);
+  --color-topbar: #1c2430;
 
-  --font-sans: 'Lato', sans-serif;
+  --font-sans: 'Outfit', 'Lato', sans-serif;
 
-  --shadow-cta: 0 8px 22px rgba(230, 30, 38, 0.45);
-  --shadow-cta-hover: 0 0 18px rgba(230, 30, 38, 0.45),
-    0 10px 26px rgba(230, 30, 38, 0.45);
+  --shadow-soft: 0 10px 28px rgba(28, 36, 48, 0.07);
   --shadow-nav: 0 8px 28px rgba(0, 0, 0, 0.18);
-  --shadow-fab: 0 10px 28px rgba(230, 30, 38, 0.45);
+  --shadow-cta: 0 8px 20px rgba(110, 196, 224, 0.4);
+  --shadow-cta-hover: 0 0 16px rgba(110, 196, 224, 0.45),
+    0 10px 24px rgba(110, 196, 224, 0.35);
+  --shadow-fab: 0 10px 24px rgba(110, 196, 224, 0.35);
 
-  --animate-hero-rise: hero-rise 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
-  --animate-hero-rise-delay: hero-rise 1s cubic-bezier(0.22, 1, 0.36, 1) 0.12s
-    both;
-  --animate-hero-ken: hero-ken 18s cubic-bezier(0.22, 1, 0.36, 1) infinite
-    alternate;
-  --animate-fab-in: fab-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) 0.4s both;
-  --animate-btn-pulse: btn-pulse 1.8s ease-in-out infinite;
-
-  --breakpoint-nav: 960px;
+  --animate-hero-rise: hero-rise 0.85s cubic-bezier(0.22, 1, 0.36, 1) both;
+  --animate-hero-rise-delay: hero-rise 0.95s cubic-bezier(0.22, 1, 0.36, 1)
+    0.1s both;
+  --animate-fab-in: fab-in 0.65s cubic-bezier(0.22, 1, 0.36, 1) 0.35s both;
 }
 
 @keyframes hero-rise {
   from {
     opacity: 0;
-    transform: translateY(18px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
@@ -41,35 +39,14 @@
   }
 }
 
-@keyframes hero-ken {
-  from {
-    transform: scale(1.02);
-  }
-  to {
-    transform: scale(1.08);
-  }
-}
-
 @keyframes fab-in {
   from {
     opacity: 0;
-    transform: translateY(12px) scale(0.92);
+    transform: translateY(10px) scale(0.94);
   }
   to {
     opacity: 1;
     transform: translateY(0) scale(1);
-  }
-}
-
-@keyframes btn-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 0 0 rgba(230, 30, 38, 0.55),
-      0 8px 22px rgba(230, 30, 38, 0.45);
-  }
-  50% {
-    box-shadow: 0 0 0 12px rgba(230, 30, 38, 0),
-      0 10px 28px rgba(230, 30, 38, 0.65);
   }
 }
 
@@ -79,7 +56,7 @@
   }
 
   body {
-    @apply m-0 min-w-80 bg-black font-sans text-base leading-normal text-charcoal antialiased;
+    @apply m-0 min-w-80 bg-bg font-sans text-base leading-normal text-ink antialiased;
   }
 
   #root {
@@ -91,25 +68,41 @@
   }
 
   a {
-    @apply text-inherit;
+    @apply cursor-pointer text-inherit;
+  }
+
+  button,
+  [role='button'],
+  select,
+  summary,
+  label,
+  input[type='button'],
+  input[type='submit'],
+  input[type='reset'],
+  input[type='checkbox'],
+  input[type='radio'],
+  input[type='file'] {
+    @apply cursor-pointer;
+  }
+
+  button:disabled,
+  [aria-disabled='true'],
+  input:disabled,
+  select:disabled {
+    @apply cursor-not-allowed;
   }
 }
 
-/* Complex gradients / reduced-motion — keep only here */
 .hero-overlay {
   background:
     linear-gradient(
-      to right,
-      rgba(7, 11, 18, 0.94) 0%,
-      rgba(7, 11, 18, 0.7) 35%,
-      rgba(7, 11, 18, 0.42) 62%,
-      rgba(7, 11, 18, 0.58) 100%
+      115deg,
+      rgba(28, 36, 48, 0.82) 0%,
+      rgba(28, 36, 48, 0.55) 36%,
+      rgba(28, 36, 48, 0.22) 66%,
+      rgba(75, 107, 138, 0.35) 100%
     ),
-    linear-gradient(
-      to top,
-      rgba(7, 11, 18, 0.88) 0%,
-      transparent 45%
-    );
+    linear-gradient(to top, rgba(238, 241, 244, 0.96) 0%, transparent 40%);
 }
 
 @media (prefers-reduced-motion: reduce) {
