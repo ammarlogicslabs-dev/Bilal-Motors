@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SectionHeading from '../SectionHeading'
-import { BLOGS } from '../../data/blogs'
+import { useDataStore } from '../../context/DataStore'
 
 const ease = [0.22, 1, 0.36, 1]
 
 function Blogs() {
   const reduceMotion = useReducedMotion()
+  const { blogs } = useDataStore()
+  const BLOGS = blogs
 
   return (
     <section id="blog" className="bg-bg px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">

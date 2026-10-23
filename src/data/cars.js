@@ -404,7 +404,7 @@ export const FILTER_OPTIONS = {
   colors: ['White', 'Black', 'Silver', 'Grey', 'Blue', 'Red'],
   conditions: ['Excellent', 'Good', 'Fair'],
   assemblies: ['Local', 'Imported'],
-  registered: ['Punjab', 'Sindh', 'KPK', 'Islamabad'],
+  registered: ['Punjab', 'Sindh', 'KPK', 'Balochistan', 'Gilgit-Baltistan', 'Azad Kashmir', 'Islamabad'],
 }
 
 export function getCarById(id) {

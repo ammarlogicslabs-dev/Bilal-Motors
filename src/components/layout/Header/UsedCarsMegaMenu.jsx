@@ -17,13 +17,13 @@ const BUY_SELL_SERVICES = [
   {
     title: 'Sell Your Car',
     subtitle: 'Choose the right way to sell.',
-    to: '/used-car',
+    to: '/sell-car',
     icon: 'tag',
   },
   {
     title: 'Sell It For Me',
     subtitle: 'Managed selling service.',
-    to: '/used-car',
+    to: '/sell-car/sell-it-for-me',
     icon: 'user',
   },
   {

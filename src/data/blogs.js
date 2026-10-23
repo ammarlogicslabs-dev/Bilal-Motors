@@ -50,6 +50,84 @@ export function getBlog(slug) {
   return BLOGS.find((item) => item.slug === slug) ?? null
 }
 
+const MONTHS = {
+  jan: 0,
+  january: 0,
+  feb: 1,
+  february: 1,
+  mar: 2,
+  march: 2,
+  apr: 3,
+  april: 3,
+  may: 4,
+  jun: 5,
+  june: 5,
+  jul: 6,
+  july: 6,
+  aug: 7,
+  august: 7,
+  sep: 8,
+  sept: 8,
+  september: 8,
+  oct: 9,
+  october: 9,
+  nov: 10,
+  november: 10,
+  dec: 11,
+  december: 11,
+}
+
+/** Normalize stored blog date → YYYY-MM-DD for <input type="date"> */
+export function toBlogDateInput(value) {
+  if (!value) return ''
+  const raw = String(value).trim()
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw)) return raw
+
+  const iso = Date.parse(raw)
+  if (!Number.isNaN(iso)) {
+    const d = new Date(iso)
+    const y = d.getFullYear()
+    const m = String(d.getMonth() + 1).padStart(2, '0')
+    const day = String(d.getDate()).padStart(2, '0')
+    return `${y}-${m}-${day}`
+  }
+
+  // "Oct 2026" / "October 2026"
+  const match = raw.match(/^([A-Za-z]+)\s+(\d{4})$/)
+  if (match) {
+    const month = MONTHS[match[1].toLowerCase()]
+    if (month != null) {
+      const y = match[2]
+      const m = String(month + 1).padStart(2, '0')
+      return `${y}-${m}-01`
+    }
+  }
+
+  return ''
+}
+
+/** Display blog date (supports ISO and legacy labels like "Oct 2026") */
+export function formatBlogDate(value) {
+  if (!value) return '—'
+  const input = toBlogDateInput(value)
+  if (!input) return String(value)
+  const d = new Date(`${input}T12:00:00`)
+  if (Number.isNaN(d.getTime())) return String(value)
+  return d.toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  })
+}
+
+export function todayBlogDateInput() {
+  const d = new Date()
+  const y = d.getFullYear()
+  const m = String(d.getMonth() + 1).padStart(2, '0')
+  const day = String(d.getDate()).padStart(2, '0')
+  return `${y}-${m}-${day}`
+}
+
 export function getRelatedBlogs(slug, limit = 2) {
   return BLOGS.filter((item) => item.slug !== slug).slice(0, limit)
 }

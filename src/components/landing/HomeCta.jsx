@@ -46,7 +46,7 @@ function HomeCta() {
               whileTap={reduceMotion ? undefined : { scale: 0.98 }}
             >
               <Link
-                to="/used-car"
+                to="/sell-car"
                 className="inline-flex items-center justify-center rounded-lg border border-white/25 bg-white/5 px-5 py-3 text-sm font-bold text-white no-underline"
               >
                 Sell Your Car

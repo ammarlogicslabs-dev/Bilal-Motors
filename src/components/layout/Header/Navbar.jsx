@@ -152,12 +152,10 @@ function Navbar() {
 
         <div className="flex shrink-0 items-center gap-2">
           <Link
-            to="/used-car"
-            onClick={closeMobile}
-            className="inline-flex items-center gap-2 rounded-[10px] bg-primary px-4.5 py-3 text-sm font-bold text-ink no-underline shadow-cta transition duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover max-[480px]:px-3 max-[480px]:py-2.5 max-[480px]:text-[13px]"
+            to="/sell-car"
+            className="hidden items-center gap-2 rounded-[10px] bg-primary px-4.5 py-3 text-sm font-bold text-ink no-underline shadow-cta transition duration-200 hover:-translate-y-px hover:bg-primary-hover hover:shadow-cta-hover min-[961px]:inline-flex"
           >
-            <span className="max-[420px]:hidden">Sell Your Car</span>
-            <span className="hidden max-[420px]:inline">Sell</span>
+            Sell Your Car
             <ArrowIcon />
           </Link>
 
@@ -304,6 +302,15 @@ function Navbar() {
                     ),
                   )}
                 </ul>
+
+                <Link
+                  to="/sell-car"
+                  onClick={closeMobile}
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-xl bg-primary px-4 py-3 text-[14px] font-extrabold text-ink no-underline shadow-cta transition hover:bg-primary-hover"
+                >
+                  Sell Your Car
+                  <ArrowIcon />
+                </Link>
 
                 <div className="mt-3 border-t border-border-soft pt-3">
                   <a

@@ -1,12 +1,13 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
-import { VIDEOS, getRelatedVideos, getVideo } from '../data/videos'
+import { useDataStore } from '../context/DataStore'
 
 const ease = [0.22, 1, 0.36, 1]
 
 function VideoDetail() {
   const { slug } = useParams()
+  const { videos, getVideo, getRelatedVideos } = useDataStore()
   const video = getVideo(slug)
   const related = getRelatedVideos(slug) || []
   const reduceMotion = useReducedMotion()
@@ -32,10 +33,10 @@ function VideoDetail() {
     )
   }
 
-  const index = VIDEOS.findIndex((item) => item.slug === video.slug)
-  const previous = index > 0 ? VIDEOS[index - 1] : null
-  const next = index >= 0 && index < VIDEOS.length - 1 ? VIDEOS[index + 1] : null
-  const latest = VIDEOS.filter((item) => item.slug !== video.slug).slice(0, 4)
+  const index = videos.findIndex((item) => item.slug === video.slug)
+  const previous = index > 0 ? videos[index - 1] : null
+  const next = index >= 0 && index < videos.length - 1 ? videos[index + 1] : null
+  const latest = videos.filter((item) => item.slug !== video.slug).slice(0, 4)
 
   async function handleShare() {
     const url = typeof window !== 'undefined' ? window.location.href : ''

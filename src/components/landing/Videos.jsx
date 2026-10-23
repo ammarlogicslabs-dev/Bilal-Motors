@@ -1,12 +1,14 @@
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
 import SectionHeading from '../SectionHeading'
-import { VIDEOS } from '../../data/videos'
+import { useDataStore } from '../../context/DataStore'
 
 const ease = [0.22, 1, 0.36, 1]
 
 function Videos() {
   const reduceMotion = useReducedMotion()
+  const { videos } = useDataStore()
+  const VIDEOS = videos
 
   return (
     <section id="videos" className="bg-surface px-6 py-14 max-[860px]:px-4 max-[860px]:py-10">

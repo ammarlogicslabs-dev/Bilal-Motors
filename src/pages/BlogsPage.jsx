@@ -1,7 +1,8 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { BLOGS } from '../data/blogs'
+import { useDataStore } from '../context/DataStore'
+import { formatBlogDate, toBlogDateInput } from '../data/blogs'
 
 const ease = [0.22, 1, 0.36, 1]
 const PAGE_SIZE = 9
@@ -13,10 +14,10 @@ const SORTS = [
   { value: 'title', label: 'Title A to Z' },
 ]
 
-const featured = BLOGS[0]
-
 function timeValue(item) {
-  const parsed = Date.parse(item.date)
+  const input = toBlogDateInput(item.date)
+  if (!input) return null
+  const parsed = Date.parse(`${input}T12:00:00`)
   return Number.isNaN(parsed) ? null : parsed
 }
 
@@ -27,6 +28,8 @@ function minutesOf(item) {
 
 function BlogsPage() {
   const reduceMotion = useReducedMotion()
+  const { blogs: BLOGS } = useDataStore()
+  const featured = BLOGS[0]
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
   const [sort, setSort] = useState('newest')
@@ -37,7 +40,7 @@ function BlogsPage() {
     const counts = new Map()
     BLOGS.forEach((blog) => counts.set(blog.category, (counts.get(blog.category) || 0) + 1))
     return [['All', BLOGS.length], ...counts.entries()]
-  }, [])
+  }, [BLOGS])
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase()
@@ -59,7 +62,7 @@ function BlogsPage() {
       return sort === 'oldest' ? ta - tb : tb - ta
     })
     return list.map(({ blog }) => blog)
-  }, [query, category, sort])
+  }, [query, category, sort, BLOGS])
 
   const shown = results.slice(0, visible)
   const hasMore = visible < results.length
@@ -228,7 +231,7 @@ function BlogsPage() {
                       {featured.category}
                     </span>
                     <span className="text-[12px] font-medium text-muted-text">
-                      {featured.readTime} · {featured.date}
+                      {featured.readTime} · {formatBlogDate(featured.date)}
                     </span>
                   </div>
                   <h2 className="m-0 text-[clamp(1.35rem,2.5vw,1.8rem)] font-extrabold tracking-[-0.02em] text-ink">
@@ -494,7 +497,7 @@ function BlogCard({ item }) {
           {item.excerpt}
         </p>
         <div className="mt-3 flex items-center justify-between border-t border-border-soft pt-3">
-          <span className="text-[11.5px] text-muted-text">{item.date}</span>
+          <span className="text-[11.5px] text-muted-text">{formatBlogDate(item.date)}</span>
           <span className="text-[13px] font-bold text-primary transition group-hover:text-primary-hover">
             Read more →
           </span>

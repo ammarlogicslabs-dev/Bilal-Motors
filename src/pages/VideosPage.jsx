@@ -1,7 +1,7 @@
 import { useMemo, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { VIDEOS } from '../data/videos'
+import { useDataStore } from '../context/DataStore'
 
 const ease = [0.22, 1, 0.36, 1]
 const PAGE_SIZE = 9
@@ -13,9 +13,6 @@ const SORTS = [
   { value: 'title', label: 'Title A to Z' },
 ]
 
-const featured = VIDEOS[0]
-
-/* "12:30" -> 750, "1:02:10" -> 3730. Anything unreadable sorts last. */
 function secondsOf(item) {
   const parts = String(item.duration || '')
     .split(':')
@@ -26,6 +23,8 @@ function secondsOf(item) {
 
 function VideosPage() {
   const reduceMotion = useReducedMotion()
+  const { videos: VIDEOS } = useDataStore()
+  const featured = VIDEOS[0]
   const [query, setQuery] = useState('')
   const [category, setCategory] = useState('All')
   const [sort, setSort] = useState('featured')
@@ -36,7 +35,7 @@ function VideosPage() {
     const counts = new Map()
     VIDEOS.forEach((video) => counts.set(video.category, (counts.get(video.category) || 0) + 1))
     return [['All', VIDEOS.length], ...counts.entries()]
-  }, [])
+  }, [VIDEOS])
 
   const results = useMemo(() => {
     const needle = query.trim().toLowerCase()
@@ -60,7 +59,7 @@ function VideosPage() {
     }
     if (sort === 'title') return [...list].sort((a, b) => a.title.localeCompare(b.title))
     return list
-  }, [query, category, sort])
+  }, [query, category, sort, VIDEOS])
 
   const shown = results.slice(0, visible)
   const hasMore = visible < results.length

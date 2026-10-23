@@ -1,12 +1,14 @@
 import { useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
-import { BLOGS, getBlog, getRelatedBlogs } from '../data/blogs'
+import { useDataStore } from '../context/DataStore'
+import { formatBlogDate } from '../data/blogs'
 
 const ease = [0.22, 1, 0.36, 1]
 
 function BlogDetail() {
   const { slug } = useParams()
+  const { blogs, getBlog, getRelatedBlogs } = useDataStore()
   const blog = getBlog(slug)
   const related = getRelatedBlogs(slug) || []
   const reduceMotion = useReducedMotion()
@@ -33,10 +35,10 @@ function BlogDetail() {
   }
 
   const body = Array.isArray(blog.body) ? blog.body : []
-  const index = BLOGS.findIndex((item) => item.slug === blog.slug)
-  const previous = index > 0 ? BLOGS[index - 1] : null
-  const next = index >= 0 && index < BLOGS.length - 1 ? BLOGS[index + 1] : null
-  const latest = BLOGS.filter((item) => item.slug !== blog.slug).slice(0, 4)
+  const index = blogs.findIndex((item) => item.slug === blog.slug)
+  const previous = index > 0 ? blogs[index - 1] : null
+  const next = index >= 0 && index < blogs.length - 1 ? blogs[index + 1] : null
+  const latest = blogs.filter((item) => item.slug !== blog.slug).slice(0, 4)
 
   async function handleShare() {
     const url = typeof window !== 'undefined' ? window.location.href : ''
@@ -82,7 +84,7 @@ function BlogDetail() {
               {blog.category}
             </span>
             <span className="text-[12.5px] font-medium text-muted-text">
-              {blog.readTime} · {blog.date}
+              {blog.readTime} · {formatBlogDate(blog.date)}
             </span>
           </div>
 

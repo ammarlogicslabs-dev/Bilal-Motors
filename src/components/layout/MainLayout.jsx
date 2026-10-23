@@ -6,7 +6,7 @@ import HelpFab from './HelpFab'
 
 function MainLayout() {
   return (
-    <div className="relative min-h-svh bg-bg">
+    <div className="page-shell relative min-h-svh">
       <ScrollToTop />
       <Header />
       <Outlet />

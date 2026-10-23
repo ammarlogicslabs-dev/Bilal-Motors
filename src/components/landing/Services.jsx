@@ -19,7 +19,7 @@ const SERVICES = [
     title: 'Sell your car online',
     description: 'List your vehicle quickly with photos and details buyers care about.',
     cta: 'Post your ad',
-    to: '/used-car',
+    to: '/sell-car',
     image: '/images/body/sedan.jpg',
     icon: 'tag',
     tint: 'from-[#eef3f8] to-white',

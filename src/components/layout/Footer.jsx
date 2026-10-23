@@ -13,12 +13,12 @@ const DISCOVER = [
   { label: 'Browse by Make', to: '/#browse-make' },
   { label: 'Browse by Body', to: '/#browse-body' },
   { label: 'Popular Cities', to: '/used-car?city=Karachi' },
-  { label: 'Sell Your Car', to: '/used-car' },
+  { label: 'Sell Your Car', to: '/sell-car' },
 ]
 
 const SERVICES = [
   { label: 'Find Used Cars', to: '/used-car' },
-  { label: 'Sell It For Me', to: '/used-car' },
+  { label: 'Sell It For Me', to: '/sell-car/sell-it-for-me' },
   { label: 'Car Videos', to: '/videos' },
   { label: 'Buying Guides', to: '/blogs' },
 ]
@@ -69,7 +69,12 @@ function Footer() {
           <p className="m-0">
             © {YEAR} Bilal Motors. All rights reserved.
           </p>
-          <p className="m-0">Buy · Sell · Discover used cars in Pakistan</p>
+          <div className="flex flex-wrap items-center gap-3">
+            <p className="m-0">Buy · Sell · Discover used cars in Pakistan</p>
+            <Link to="/login" className={`${footerLinkClass} text-white/40`}>
+              Login
+            </Link>
+          </div>
         </div>
       </div>
     </footer>

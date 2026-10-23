@@ -127,7 +127,6 @@
   }
 }
 
-/* Nested / panel scroll areas — slightly slimmer */
 .custom-scrollbar {
   scrollbar-width: thin;
   scrollbar-color: var(--color-primary) rgba(28, 36, 48, 0.06);
@@ -167,8 +166,51 @@
     linear-gradient(to top, rgba(238, 241, 244, 0.96) 0%, transparent 40%);
 }
 
+/* Shared page shell — soft ice wash (same as blogs hero atmosphere) */
+.page-shell {
+  background: linear-gradient(160deg, #eef1f4 0%, #e8f4f9 45%, #eef1f4 100%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .motion-safe-anim {
     animation: none !important;
   }
+}
+
+/* ── Admin shell — same ice-blue brand, denser console chrome ── */
+.admin-shell {
+  background: var(--color-bg);
+  color: var(--color-ink);
+}
+
+.admin-aside-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-primary) transparent;
+}
+
+.admin-aside-scroll::-webkit-scrollbar {
+  width: 6px;
+}
+
+.admin-aside-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-primary);
+  border-radius: 3px;
+}
+
+/* react-toastify — match ice-blue theme */
+.Toastify__toast-theme--light {
+  color: var(--color-ink);
+}
+
+.Toastify__progress-bar--success,
+.Toastify__progress-bar--info {
+  background: var(--color-primary);
+}
+
+.Toastify__progress-bar--warning {
+  background: #f59e0b;
+}
+
+.Toastify__progress-bar--error {
+  background: #ef4444;
 }

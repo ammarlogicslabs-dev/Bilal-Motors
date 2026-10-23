@@ -1,4 +1,17 @@
+import { Link, useNavigate } from 'react-router-dom'
+import { useDataStore } from '../../../context/DataStore'
+import { toastSuccess } from '../../../lib/toast.jsx'
+
 function TopBar() {
+  const { currentUser, isAdmin, isLoggedIn, logout } = useDataStore()
+  const navigate = useNavigate()
+
+  function onLogout() {
+    logout()
+    toastSuccess('Signed out')
+    navigate('/', { replace: true })
+  }
+
   return (
     <div className="bg-ink text-[12.5px] leading-none text-white/80">
       <div className="mx-auto flex max-w-310 items-center justify-between gap-4 px-6 py-1.5">
@@ -19,18 +32,47 @@ function TopBar() {
           </a>
         </div>
 
-        <div className="flex items-center gap-4 max-[960px]:hidden">
-          <span className="h-3 w-px bg-white/25" aria-hidden="true" />
-          <a href="#signup" className="transition-colors hover:text-white">
-            Create account
-          </a>
-          <a
-            href="#login"
-            className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 transition-colors hover:bg-white/15 hover:text-white"
-          >
-            <UserIcon />
-            Login
-          </a>
+        <div className="flex items-center gap-3 max-[960px]:gap-2">
+          <span className="h-3 w-px bg-white/25 max-[960px]:hidden" aria-hidden="true" />
+
+          {isLoggedIn ? (
+            <>
+              <span className="hidden text-white/70 sm:inline">
+                Hi, <strong className="font-bold text-white">{currentUser?.name}</strong>
+              </span>
+              {isAdmin ? (
+                <Link
+                  to="/admin"
+                  className="rounded-md bg-primary/20 px-2.5 py-1.5 font-bold text-primary no-underline transition hover:bg-primary/30"
+                >
+                  Admin
+                </Link>
+              ) : null}
+              <button
+                type="button"
+                onClick={onLogout}
+                className="rounded-md bg-white/10 px-2.5 py-1.5 font-semibold text-white transition hover:bg-white/15"
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            <>
+              <Link
+                to="/login"
+                className="hidden transition-colors hover:text-white sm:inline no-underline text-white/80"
+              >
+                Create account
+              </Link>
+              <Link
+                to="/login"
+                className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 font-semibold text-white no-underline transition-colors hover:bg-white/15"
+              >
+                <UserIcon />
+                Login
+              </Link>
+            </>
+          )}
         </div>
       </div>
     </div>

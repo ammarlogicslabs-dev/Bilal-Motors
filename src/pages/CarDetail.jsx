@@ -1,12 +1,15 @@
 import { useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 import { motion, useReducedMotion } from 'framer-motion'
-import { formatMileage, formatPrice, getCarById } from '../data/cars'
+import { formatMileage, formatPrice } from '../data/cars'
+import { useDataStore } from '../context/DataStore'
+import { toWhatsappDigits } from '../lib/phone'
 
 const ease = [0.22, 1, 0.36, 1]
 
 function CarDetail() {
   const { id } = useParams()
+  const { getCarById } = useDataStore()
   const car = getCarById(id)
   const reduceMotion = useReducedMotion()
   const [activeImage, setActiveImage] = useState(0)
@@ -159,8 +162,8 @@ function CarDetail() {
                   </button>
                 </div>
 
-                <div className="grid grid-cols-3 gap-2 max-[759px]:grid-cols-6 min-[760px]:grid-cols-2">
-                  {images.slice(0, 6).map((src, index) => (
+                <div className="grid grid-cols-3 gap-2 max-[759px]:grid-cols-5 min-[760px]:grid-cols-2">
+                  {images.slice(0, 20).map((src, index) => (
                     <button
                       key={`${src}-${index}`}
                       type="button"
@@ -285,7 +288,7 @@ function CarDetail() {
                 Call Seller
               </a>
               <a
-                href={`https://wa.me/${car.whatsapp.replace(/\D/g, '')}`}
+                href={`https://wa.me/${toWhatsappDigits(car.whatsapp || car.phone)}`}
                 target="_blank"
                 rel="noreferrer"
                 className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-xl border border-border-soft bg-bg px-4 py-3.5 text-sm font-bold text-ink no-underline transition hover:border-primary/40"
